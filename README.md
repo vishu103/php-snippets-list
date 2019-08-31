@@ -6,20 +6,20 @@ This a well curated list of very useful php snippets which can help you in your 
 
 ### 1. Generate Random String
 ```php
-function generate_rand($len){
-    $chars= '-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';  
-    srand((double)microtime()*1000000);  
-    $rand='';
-    for($i=0; $i<$len; $i++) {  
-        $rand.= $chars[rand()%strlen($chars)];  
-    }  
-    return $rand;  
-}
+		function generate_rand($len){
+			$chars= '-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';  
+			srand((double)microtime()*1000000);  
+			$rand='';
+			for($i=0; $i<$len; $i++) {  
+				$rand.= $chars[rand()%strlen($chars)];  
+			}  
+			return $rand;  
+		}
 ```
 
 ### 2. List all the files in a directory
 ```php
-function list_files($dir){
+		function list_files($dir){
             if(is_dir($dir)){
                 if($handle = opendir($dir)){
                     while(($file = readdir($handle)) !== false){
@@ -35,7 +35,7 @@ function list_files($dir){
 
 ### 3. Generate a readable random string
 ```php
-function readable_string($len = 6){
+		function readable_string($len = 6){
             $consonants=array("b","c","d","f","g","h","j","k","l",  
             "m","n","p","r","s","t","v","w","x","y","z");  
             $vowels=array("a","e","i","o","u");  
@@ -53,7 +53,7 @@ function readable_string($len = 6){
 
 ### 4. Delete a directory and its contents
 ```php
-function destroyDir($dir, $virtual = false){
+		function destroyDir($dir, $virtual = false){
             $ds = DIRECTORY_SEPARATOR;  
             $dir = $virtual ? realpath($dir) : $dir;  
             $dir = substr($dir, -1) == $ds ? substr($dir, 0, -1) : $dir;  
@@ -81,7 +81,7 @@ function destroyDir($dir, $virtual = false){
 
 ### 5. Get real IP address of the user
 ```php
-function getRealIpAddr(){
+		function getRealIpAddr(){
             if (!empty($_SERVER['HTTP_CLIENT_IP'])){
                 $ip=$_SERVER['HTTP_CLIENT_IP'];
             }
@@ -97,7 +97,7 @@ function getRealIpAddr(){
 
 ### 6. Force a file to download
 ```php
-function force_download($file){
+		function force_download($file){
             if ((isset($file)) && (file_exists($file))){
                 header("Content-length: ".filesize($file));
                 header('Content-Type: application/octet-stream');
@@ -111,7 +111,7 @@ function force_download($file){
 
 ### 7. Validate first and last name
 ```php
-function validFirstLastName($name, $maxLen=100){
+		function validFirstLastName($name, $maxLen=100){
 
             $nameLen=strlen($name);
             if($nameLen>$maxLen || $nameLen==0){
@@ -142,7 +142,7 @@ function validFirstLastName($name, $maxLen=100){
 
 ### 8. Add th, st, nd, rd and th after a number
 ```php
-function ordinal($num){
+		function ordinal($num){
             $test_c = abs($num) % 10;
             $ext = ((abs($num) %100 < 21 && abs($num) %100 > 4) ? 'th'
                     : (($test_c < 4) ? ($test_c < 3) ? ($test_c < 2) ? ($test_c < 1)
@@ -153,7 +153,7 @@ function ordinal($num){
 
 ### 9. Convert minutes into hours and minutes
 ```php
-function convertToHoursMins($time, $format = '%02d:%02d'){
+		function convertToHoursMins($time, $format = '%02d:%02d'){
             if ($time < 1) {
                 return 0;
             }
@@ -165,7 +165,7 @@ function convertToHoursMins($time, $format = '%02d:%02d'){
 
 ### 10. Calculate difference b/w two dates
 ```php
-function dateDiff($date1, $date2){
+		function dateDiff($date1, $date2){
             $datetime1 = new DateTime($date1);
             $datetime2 = new DateTime($date2);
             $interval = $datetime1->diff($datetime2);
@@ -175,7 +175,7 @@ function dateDiff($date1, $date2){
 
 ### 11. Calcute age, given date of birth
 ```php
-function ageFinder($date){
+		function ageFinder($date){
             $time = strtotime($date);
             if($time === false){
               return '';
@@ -195,7 +195,7 @@ function ageFinder($date){
 
 ### 12. Check if the connection is HTTPS or HTTP
 ```php
-function httpOrHttps(){
+		function httpOrHttps(){
             // 1 for HTTPS and 0 for HTTP
             if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
                 return 1;
@@ -207,7 +207,7 @@ function httpOrHttps(){
 
 ### 13. Generate random HEX color
 ```php
-function randonHEX(){
+		function randonHEX(){
             $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
             return '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
         }
@@ -215,7 +215,7 @@ function randonHEX(){
 
 ### 14. Generate random Integer
 ```php
-function getRandomId($min = NULL, $max = NULL) {
+		function getRandomId($min = NULL, $max = NULL) {
             if (is_numeric($min) && is_numeric($max)) {
                     return mt_rand($min, $max);
             }
@@ -227,7 +227,7 @@ function getRandomId($min = NULL, $max = NULL) {
 
 ### 15. Check if the current request is AJAX
 ```php
-function isAjaxRequest(){
+		function isAjaxRequest(){
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
                 return true;
             }else{
@@ -238,7 +238,7 @@ function isAjaxRequest(){
 
 ### 16. Convert month number to name
 ```php
-function monthNumberToName($num){
+		function monthNumberToName($num){
             if($num<1 || $num>12){
                 return "ERROR";
             }
@@ -248,7 +248,7 @@ function monthNumberToName($num){
 
 ### 17. Distance b/w coordinates (using Haversine Great Circle method)
 ```php
-function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
+		function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
             // convert from degrees to radians
             $latFrom = deg2rad($latitudeFrom);
             $lonFrom = deg2rad($longitudeFrom);
@@ -264,7 +264,7 @@ function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo
 
 ### 18. Distance b/w coordinates (using Vincenty Great Circle method)
 ```php
-function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
+		function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
             // convert from degrees to radians
             $latFrom = deg2rad($latitudeFrom);
             $lonFrom = deg2rad($longitudeFrom);
@@ -281,7 +281,7 @@ function vincentyGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo,
 
 ### 19. Unzip an archive
 ```php
-function unzipArchive($file, $destinationFolder){
+		function unzipArchive($file, $destinationFolder){
             $zip = new ZipArchive() ;
             if ($zip->open($file) !== TRUE) {
                 die ('ERROR');
@@ -293,7 +293,7 @@ function unzipArchive($file, $destinationFolder){
 
 ### 20. Check is an email is disposable
 ```php
-function isDisposableEmail($email){            
+		function isDisposableEmail($email){            
             $disposable_list = array('drdrb.net', 'upliftnow.com', 'uplipht.com', 'venompen.com', 'veryrealemail.com', 'viditag.com', 'viewcastmedia.com', 'viewcastmedia.net', 'viewcastmedia.org', 'gustr.com', 'webm4il.in', 'wegwerfadresse.de', 'wegwerfemail.de', 'wetrainbayarea.com', 'wetrainbayarea.org', 'wh4f.org', 'whyspam.me', 'willselfdestruct.com', 'winemaven.in', 'wronghead.com', 'wuzup.net', 'wuzupmail.net', 'www.e4ward.com', 'www.gishpuppy.com', 'www.mailinator.com', 'wwwnew.eu', 'xagloo.com', 'xemaps.com', 'xents.com', 'xmaily.com', 'xoxy.net', 'yep.it', 'yogamaven.com', 'yopmail.fr', 'yopmail.net', 'ypmail.webarnak.fr.eu.org', 'yuurok.com', 'zehnminutenmail.de', 'zippymail.in', 'zoaxe.com', 'zoemail.org', 'inboxalias.com', 'koszmail.pl', 'tagyourself.com', 'whatpaas.com', 'emeil.in', 'azmeil.tk', 'mailfa.tk', 'inbax.tk', 'emeil.ir', 'crazymailing.com', 'mailimate.com');
             $domain = substr(strrchr($email, "@"), 1);
             if(in_array($domain, $disposable_list)){
@@ -306,7 +306,7 @@ function isDisposableEmail($email){
 
 ### 21. Extract source code of a web page
 ```php
-function webSource($link){
+		function webSource($link){
             $lines = file($link);
             foreach ($lines as $line_num => $line) {
                 echo htmlspecialchars($line);
